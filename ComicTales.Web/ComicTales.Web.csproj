@@ -201,6 +201,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MockupsController.cs" />
     <Compile Include="Controllers\TodoController.cs" />
     <Compile Include="Controllers\TodoListController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -218,6 +219,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\Mockups\hands up.jpg" />
+    <Content Include="Content\Mockups\kick boxing.jpg" />
+    <Content Include="Content\Mockups\kick boxing2.jpg" />
+    <Content Include="Content\Mockups\slingshot.jpg" />
+    <Content Include="Content\Mockups\swing.jpg" />
+    <Content Include="Content\Mockups\together.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -344,6 +351,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Login.cshtml" />
     <Content Include="Views\Home\_Register.cshtml" />
+    <Content Include="Views\Mockups\ViewComics.cshtml" />
+    <Content Include="Views\Mockups\_ViewStart.cshtml" />
+    <Content Include="Views\Mockups\_Layout.cshtml" />
+    <Content Include="Views\Mockups\EditComics.cshtml" />
+    <Content Include="Views\Mockups\CreateTile.cshtml" />
+    <Content Include="Views\Mockups\CreateTileCam.cshtml" />
+    <Content Include="Views\Mockups\CreateTileUpload.cshtml" />
+    <Content Include="Views\Mockups\EditTile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Mockups - Comic Tale</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/themes/base/css")
+</head>
+<body>
+    <div id="body">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("View Comics", "ViewComics", "Mockups", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("TBD: Edit Comics", "EditComics", "Mockups", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("TBD: Create Tile", "CreateTile", "Mockups", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("TBD: Create Tile (camera)", "CreateTileCam", "Mockups", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("TBD: Create Tile (upload)", "CreateTileUpload", "Mockups", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("TBD: Edit Tile", "EditTile", "Mockups", new { area = "" }, null)</li>
+            </ul>
+        </nav> 
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/ajaxlogin")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
