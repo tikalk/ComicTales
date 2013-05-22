@@ -1,0 +1,62 @@
+﻿body {
+	padding: 0;
+	margin: 10px auto;
+	position: relative;
+	font-family: sans-serif;
+
+	width: 1240px;
+	height: 800px;
+	border: 1px solid darkblue;
+}
+
+
+#header {
+	background-color: cornflowerblue;
+	border-bottom: 1px solid darkblue;
+	height: 100px;
+	width: 100%;	
+}
+
+#title {
+	color: darkblue;
+	font-weight: bold;
+	font-size: 45px;
+	position: relative;
+	left: 50px;
+	top: 20px;
+}
+
+#footer {
+	background-color: cornflowerblue;
+	border-top: 1px solid darkblue;
+	position: absolute;
+	height: 50px;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+}
+
+#toolbar {
+	background-color: lightgray;
+	border-bottom: 1px solid darkgrey;
+	height: 50px;
+	width: 100%;
+}
+
+#content {
+	overflow: auto;
+	position: absolute;
+	top: 152px;
+	bottom: 50px;
+	left: 0;
+	right: 0;
+}
+
+.list-item {
+	float: left;
+	width: 300px;
+	height: 300px;
+	margin: 20px;
+	border: 1px solid darkgray;
+	background-color: rgb(237, 237, 237);
+}
