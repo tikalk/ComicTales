@@ -59,4 +59,23 @@
 	margin: 20px;
 	border: 1px solid darkgray;
 	background-color: rgb(237, 237, 237);
+	position: relative;
+}
+
+.list-item-add {
+	cursor: pointer;
+}
+
+.list-item-actions {
+	position: absolute;
+	right: 20px;
+	bottom: -10px;
+	padding: 4px;
+	border-radius: 4px;
+	border: 1px solid darkblue;
+	background-color: white;
+}
+
+.list-item-action {
+	display: inline-block;
 }

@@ -6,24 +6,29 @@
 }
 
 
+<script type="text/javascript" src="~/Scripts/Editor.js"></script>
+<script type="text/javascript">
+
+    $(function() {
+        ComicTales.Init();
+    });
+
+</script>
+
 <div>
-    @*    <div class="list-item">
+    
+    <!-- ko foreach: tiles -->
+    <div class="list-item">
         
-        <div class="list-item-action"></div>
-        <div class="list-item-action"></div>
+        <div class="list-item-actions">
+            <div class="list-item-action" data-bind="click: $root.editTile"><img src="~/Content/imgs/edit.png"/></div>
+            <div class="list-item-action" data-bind="click: $root.deleteTile"><img src="~/Content/imgs/delete.png"/></div>
+        </div>
     </div>
+    <!-- /ko -->
 
-    <div class="list-item">
-        
-        <div class="list-item-action"></div>
-        <div class="list-item-action"></div>
-    </div>*@
-
-@foreach(var i in Enumerable.Range(0, 6))
-{
-    <div class="list-item">
+    <div class="list-item list-item-add" data-bind="click: addNewTile">
         <div><img src="~/Content/imgs/add.png"/></div>
 
     </div>
-}
 </div>
