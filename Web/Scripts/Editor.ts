@@ -2,6 +2,10 @@
 /// <reference path="typings/knockout/knockout.d.ts" />
 /// <reference path="EditTileDialog.ts" />
 
+interface JQueryStatic {
+    connection: any;
+}
+
 module ComicTales {
 
     export function Init(storyId: string) {
@@ -19,7 +23,12 @@ module ComicTales {
         public hasUpdates = ko.observable(false);
 
         constructor(private storyId: string) {
+
+            // load data
             this.loadTiles();
+
+            // Start the connection
+            this.initConnection();
         }
 
         public refresh(): void {
@@ -49,6 +58,23 @@ module ComicTales {
         private updateTiles(data) {
             this.tiles.removeAll();
             $.each(data.tiles, (index, tile) => this.tiles.push(tile));
+        }
+
+        private initConnection() {
+
+            // Proxy created on the fly 
+            var storyNotifications = $.connection.storyNotifications;
+
+            // Declare a function on the chat hub so the server can invoke it          
+            storyNotifications.client.notifyHasUpdates = () => {
+                console.log('Recieve updates notification!');
+                this.hasUpdates(true);
+            };
+
+            // Start the connection
+            $.connection.hub.start(() => storyNotifications.server.join(this.storyId))
+                .done(() => { console.log('Now connected, connection ID=' + $.connection.hub.id + ', transport=' + $.connection.hub.transport.name); })
+                .fail(() => { console.log('Could not Connect!'); });
         }
     }
 

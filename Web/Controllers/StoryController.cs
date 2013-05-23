@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
 using MongoDB.Driver.Builders;
 
 namespace ComicTales.Controllers
@@ -12,7 +13,7 @@ namespace ComicTales.Controllers
     {
         //
         // GET: /Story/<id>
-
+        [HttpGet]
         public ActionResult Index(string id)
         {
             return View();
@@ -21,7 +22,7 @@ namespace ComicTales.Controllers
 
         //
         // GET: /Story/<id>
-
+        [HttpGet]
         public ActionResult Edit(string id)
         {
             dynamic model = new ExpandoObject();
@@ -29,6 +30,17 @@ namespace ComicTales.Controllers
             model.StoryId = id;
             
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SaveTile(string id, string tileId)
+        {
+            //do save 
+
+            var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotifications>();
+            context.Clients.Group(id).notifyHasUpdates();
+
+            return Json(new {status = "OK"});
         }
 
         public ActionResult GetTiles(string id)
