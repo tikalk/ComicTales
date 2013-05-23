@@ -1,5 +1,6 @@
 /// <reference path="typings/jquery/jquery.d.ts" />
 /// <reference path="typings/knockout/knockout.d.ts" />
+/// <reference path="EditTileDialog.ts" />
 
 module ComicTales {
 
@@ -23,16 +24,16 @@ module ComicTales {
         }
 
         public addNewTile(): void {
-            alert('add');
+            new EditTileDialog().open();
         }
 
 
         public editTile(tile: TileViewModel) {
-            alert('edit ' + tile.id);
+            new EditTileDialog(tile).open();
         }
 
         public deleteTile(tile: TileViewModel) {
-            alert('delete ' + tile.id);
+            // todo: not implemented yet
         }
     }
 

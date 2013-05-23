@@ -1,9 +1,13 @@
 ﻿body {
 	padding: 0;
-	margin: 10px auto;
-	position: relative;
+    margin: 0;
 	font-family: sans-serif;
+}
 
+#body {
+	margin: 10px auto;
+    padding: 0;
+	position: relative;
 	width: 1240px;
 	height: 800px;
 	border: 1px solid darkblue;
@@ -15,6 +19,10 @@
 	border-bottom: 1px solid darkblue;
 	height: 100px;
 	width: 100%;	
+}
+
+#header h1 {
+    margin: 0;
 }
 
 #title {
@@ -52,6 +60,21 @@
 	right: 0;
 }
 
+div.inline {
+    display: inline-block;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.roundborder6 {
+    border-radius: 12px;
+    padding: 12px;
+    border: 2px solid darkgray;
+    margin: 6px;
+}
+
 .list-item {
 	float: left;
 	width: 300px;
@@ -78,4 +101,13 @@
 
 .list-item-action {
 	display: inline-block;
+}
+
+.toolbox {
+    padding-top: 10px;
+}
+
+.toolbox img {
+    width: 110px;
+    margin: 5px;
 }

@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
@@ -116,14 +117,32 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\imgs\add.png" />
+    <Content Include="Content\imgs\balloon1.png" />
+    <Content Include="Content\imgs\balloon2.png" />
+    <Content Include="Content\imgs\balloon3.png" />
+    <Content Include="Content\imgs\balloon4.png" />
+    <Content Include="Content\imgs\camera.png" />
     <Content Include="Content\imgs\delete.png" />
     <Content Include="Content\imgs\edit.png" />
+    <Content Include="Content\imgs\progress-bar.jpg" />
+    <Content Include="Content\imgs\tile1.png" />
+    <Content Include="Content\imgs\upload.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -187,11 +206,24 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <TypeScriptCompile Include="Scripts\EditTileDialog.ts" />
+    <Content Include="Scripts\EditTileDialog.js">
+      <DependentUpon>EditTileDialog.ts</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
+    <Content Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <Content Include="Views\Story\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Story\Edit.cshtml" />
+    <Content Include="Scripts\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <TypeScriptCompile Include="Scripts\Editor.ts" />
     <Content Include="Scripts\Editor.js">
       <DependentUpon>Editor.ts</DependentUpon>

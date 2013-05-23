@@ -7,6 +7,7 @@
 
 
 <script type="text/javascript" src="~/Scripts/Editor.js"></script>
+<script type="text/javascript" src="~/Scripts/EditTileDialog.js"></script>
 <script type="text/javascript">
 
     $(function() {
@@ -30,5 +31,74 @@
     <div class="list-item list-item-add" data-bind="click: addNewTile">
         <div><img src="~/Content/imgs/add.png"/></div>
 
+    </div>
+    
+    <div style="display: none;">
+        <div id="editTileDialog">
+            <div id="takePicture" style="display: none;">
+            
+                <div style="margin: 20px auto; width: 600px; text-align: center;">
+                
+                    <h2>How do you want to take a picture?</h2>
+
+                    <div class="inline roundborder6 clickable">
+                        <img src="~/Content/imgs/camera.png"/>
+                    </div>
+
+                    <div class="inline roundborder6 clickable">
+                        <img src="~/Content/imgs/upload.png"/>
+                    </div>
+                
+                    <h2>Camera or Upload?</h2>
+
+                </div>
+
+            </div>
+            
+            <div id="takePictureFromCamera" style="display: none;">
+                
+            </div>
+
+            <div id="upload" style="display: none;">
+                <div style="margin: 40px auto; width: 600px; text-align: center;">
+                
+                    <h2>Select Image to Upload</h2>
+                    <input type="file" />
+                    <br/>
+                    <br/>
+                    <button>Submit</button>
+                </div>
+            </div>
+
+            <div id="uploadProgress" style="display: none;">
+                <div style="margin: 40px auto; width: 600px; text-align: center;">
+                    <h2>Uploading...</h2>
+                    <img src="~/Content/imgs/progress-bar.jpg"/>
+                </div>
+                
+            </div>
+            
+            <div id="edtiTile">
+                <div style="padding-right: 25px; position: relative; height: 470px;">
+                    
+                    <img src="~/Content/imgs/tile1.png"/>
+                    <div style="position: absolute; right: 0; top: 0; width: 250px; height: 400px; background: rgb(237, 237, 237); border: 1px solid darkgray; border-radius: 6px; padding: 4px;">
+                        <h3 style="margin: 0">Toolbox</h3>
+                        <div class="toolbox">
+                            <img src="~/Content/imgs/balloon1.png" />
+                            <img src="~/Content/imgs/balloon2.png" />
+                            <img src="~/Content/imgs/balloon3.png" />
+                            <img src="~/Content/imgs/balloon4.png" />
+
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button style="font-size: 32px;">Save</button>
+                </div>
+            </div>
+
+
+        </div>
     </div>
 </div>

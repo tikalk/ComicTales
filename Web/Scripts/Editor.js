@@ -1,5 +1,6 @@
 /// <reference path="typings/jquery/jquery.d.ts" />
 /// <reference path="typings/knockout/knockout.d.ts" />
+/// <reference path="EditTileDialog.ts" />
 var ComicTales;
 (function (ComicTales) {
     function Init() {
@@ -15,14 +16,14 @@ var ComicTales;
             ]);
         }
         EditorViewModel.prototype.addNewTile = function () {
-            alert('add');
+            new ComicTales.EditTileDialog().open();
         };
         EditorViewModel.prototype.editTile = function (tile) {
-            alert('edit ' + tile.id);
+            new ComicTales.EditTileDialog(tile).open();
         };
         EditorViewModel.prototype.deleteTile = function (tile) {
-            alert('delete ' + tile.id);
-        };
+            // todo: not implemented yet
+                    };
         return EditorViewModel;
     })();
     ComicTales.EditorViewModel = EditorViewModel;    
