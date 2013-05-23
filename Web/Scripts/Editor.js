@@ -30,6 +30,7 @@ var ComicTales;
     var TileViewModel = (function () {
         function TileViewModel(id) {
             this.id = id;
+            this.imageUrl = '/Content/imgs/tile1.png';
         }
         return TileViewModel;
     })();

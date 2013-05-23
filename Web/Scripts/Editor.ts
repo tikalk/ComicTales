@@ -39,6 +39,8 @@ module ComicTales {
 
     export class TileViewModel {
 
+        public imageUrl = '/Content/imgs/tile1.png';
+
         constructor(public id: string) {
         }
     }

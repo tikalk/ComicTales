@@ -85,6 +85,11 @@ div.inline {
 	position: relative;
 }
 
+.list-item img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
 .list-item-add {
 	cursor: pointer;
 }
