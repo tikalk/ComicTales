@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ComicTales;
 
-namespace Web
+namespace ComicTales
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -20,5 +21,12 @@ namespace Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            MongoDBConnector.Connect();
+        }
+
     }
 }

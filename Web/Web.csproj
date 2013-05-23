@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Web</RootNamespace>
-    <AssemblyName>Web</AssemblyName>
+    <RootNamespace>ComicTales</RootNamespace>
+    <AssemblyName>ComicTales</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -129,9 +129,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="[Code]\FilterConfig.cs" />
+    <Compile Include="[Code]\MongoDBConnector.cs" />
+    <Compile Include="[Code]\MongoDBRepository.cs" />
+    <Compile Include="[Code]\RouteConfig.cs" />
+    <Compile Include="[Code]\Story.cs" />
+    <Compile Include="[Code]\WebApiConfig.cs" />
     <Content Include="Content\imgs\add.png" />
     <Content Include="Content\imgs\ajax-loader.gif" />
     <Content Include="Content\imgs\balloon1.png" />
@@ -143,7 +146,7 @@
     <Content Include="Content\imgs\delete.png" />
     <Content Include="Content\imgs\edit.png" />
     <Content Include="Content\imgs\progress-bar.jpg" />
-    <Content Include="Content\imgs\tile1.png" />
+    <Content Include="Upload\tile1.png" />
     <Content Include="Content\imgs\upload.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />

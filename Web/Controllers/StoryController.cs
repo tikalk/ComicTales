@@ -4,8 +4,9 @@ using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MongoDB.Driver.Builders;
 
-namespace Web.Controllers
+namespace ComicTales.Controllers
 {
     public class StoryController : Controller
     {
@@ -32,16 +33,21 @@ namespace Web.Controllers
 
         public ActionResult GetTiles(string id)
         {
+            var storyToken = id;
+
+            var repository = new MongoDBRepository(MongoDBConnector.Database);
+            var story = repository.GetStoryByToken(storyToken);
+
             var data = new
                            {
-                               tiles = new []
-                                           {
-                                               new
-                                                   {
-                                                       id = "abc",
-                                                       imageUrl = "/Content/imgs/tile1.png",
-                                                   }
-                                           }
+                               tiles = (story.Tiles ?? new List<Tile>())
+                                   .Select(tile =>
+                                           new
+                                               {
+                                                   id = tile.TileId,
+                                                   imageUrl = "/Upload/" + tile.Image,
+                                               }
+                                   ).ToArray(),
                            };
 
             return Json(data, JsonRequestBehavior.AllowGet);
