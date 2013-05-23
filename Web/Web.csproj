@@ -133,10 +133,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\imgs\add.png" />
+    <Content Include="Content\imgs\ajax-loader.gif" />
     <Content Include="Content\imgs\balloon1.png" />
     <Content Include="Content\imgs\balloon2.png" />
     <Content Include="Content\imgs\balloon3.png" />
     <Content Include="Content\imgs\balloon4.png" />
+    <Content Include="Content\imgs\bell.png" />
     <Content Include="Content\imgs\camera.png" />
     <Content Include="Content\imgs\delete.png" />
     <Content Include="Content\imgs\edit.png" />

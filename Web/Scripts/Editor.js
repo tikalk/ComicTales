@@ -3,18 +3,22 @@
 /// <reference path="EditTileDialog.ts" />
 var ComicTales;
 (function (ComicTales) {
-    function Init() {
-        var viewModel = new EditorViewModel();
+    function Init(storyId) {
+        var viewModel = new EditorViewModel(storyId);
         ko.applyBindings(viewModel);
     }
     ComicTales.Init = Init;
     var EditorViewModel = (function () {
-        function EditorViewModel() {
+        function EditorViewModel(storyId) {
+            this.storyId = storyId;
             this.tiles = ko.observableArray([]);
-            this.tiles = ko.observableArray([
-                new TileViewModel('aaa')
-            ]);
+            this.isLoading = ko.observable(false);
+            this.hasUpdates = ko.observable(false);
+            this.loadTiles();
         }
+        EditorViewModel.prototype.refresh = function () {
+            this.loadTiles();
+        };
         EditorViewModel.prototype.addNewTile = function () {
             new ComicTales.EditTileDialog().open();
         };
@@ -24,16 +28,23 @@ var ComicTales;
         EditorViewModel.prototype.deleteTile = function (tile) {
             // todo: not implemented yet
                     };
+        EditorViewModel.prototype.loadTiles = function () {
+            var _this = this;
+            this.isLoading(true);
+            $.get('/Story/' + this.storyId + '/GetTiles', function (data, textStatus, jqXHR) {
+                _this.isLoading(false);
+                _this.updateTiles(data);
+            });
+        };
+        EditorViewModel.prototype.updateTiles = function (data) {
+            var _this = this;
+            this.tiles.removeAll();
+            $.each(data.tiles, function (index, tile) {
+                return _this.tiles.push(tile);
+            });
+        };
         return EditorViewModel;
     })();
     ComicTales.EditorViewModel = EditorViewModel;    
-    var TileViewModel = (function () {
-        function TileViewModel(id) {
-            this.id = id;
-            this.imageUrl = '/Content/imgs/tile1.png';
-        }
-        return TileViewModel;
-    })();
-    ComicTales.TileViewModel = TileViewModel;    
 })(ComicTales || (ComicTales = {}));
 //@ sourceMappingURL=Editor.js.map

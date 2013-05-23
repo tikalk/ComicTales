@@ -49,6 +49,8 @@
 	border-bottom: 1px solid darkgrey;
 	height: 50px;
 	width: 100%;
+    font-weight: bold;
+    position: relative;
 }
 
 #content {

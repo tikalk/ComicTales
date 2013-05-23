@@ -4,9 +4,9 @@
 
 module ComicTales {
 
-    export function Init() {
+    export function Init(storyId: string) {
 
-        var viewModel = new EditorViewModel();
+        var viewModel = new EditorViewModel(storyId);
 
         ko.applyBindings(viewModel);
 
@@ -15,18 +15,20 @@ module ComicTales {
     export class EditorViewModel {
 
         public tiles = ko.observableArray([]);
+        public isLoading = ko.observable(false);
+        public hasUpdates = ko.observable(false);
 
-        constructor() {
+        constructor(private storyId: string) {
+            this.loadTiles();
+        }
 
-            this.tiles = ko.observableArray([
-                new TileViewModel('aaa')
-            ]);
+        public refresh(): void {
+            this.loadTiles();
         }
 
         public addNewTile(): void {
             new EditTileDialog().open();
         }
-
 
         public editTile(tile: TileViewModel) {
             new EditTileDialog(tile).open();
@@ -35,13 +37,24 @@ module ComicTales {
         public deleteTile(tile: TileViewModel) {
             // todo: not implemented yet
         }
+
+        private loadTiles() {
+            this.isLoading(true);
+            $.get('/Story/' + this.storyId + '/GetTiles', (data, textStatus, jqXHR) => {
+                this.isLoading(false);
+                this.updateTiles(data);
+            });
+        }
+
+        private updateTiles(data) {
+            this.tiles.removeAll();
+            $.each(data.tiles, (index, tile) => this.tiles.push(tile));
+        }
     }
 
-    export class TileViewModel {
+    export interface TileViewModel {
 
-        public imageUrl = '/Content/imgs/tile1.png';
-
-        constructor(public id: string) {
-        }
+        id: string;
+        imageUrl: string;
     }
 }
