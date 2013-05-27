@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{99703CC7-3F2C-4CD9-8728-B90ECD9E4555}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicTales.Web", "ComicTales.Web\ComicTales.Web.csproj", "{99703CC7-3F2C-4CD9-8728-B90ECD9E4555}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
