@@ -6,20 +6,85 @@ module ComicTales {
     export class EditTileDialog {
 
         private title: string;
+        private isNew: bool;
+
+        public selectedView: KnockoutObservableString;
+        public isCameraVisible = ko.observable(true);
 
         constructor(private tile?: TileViewModel) {
 
+            EditTileDialog.ensureDialogCreated();
+
             this.title = tile ? 'Edit Tile' : 'Add New Tile';
+            this.isNew = !tile;
+
+            this.selectedView = ko.observable(this.isNew ? 'takePicture' : 'edtiTile');
+
         }
+
+        private static dialogCreated = false;
+        private static ensureDialogCreated(): void {
+            if (!EditTileDialog.dialogCreated) {
+                // create dialog once
+                $('#editTileDialog').dialog({
+                    autoOpen: false,
+                    width: 800,
+                    height: 600,
+                    modal: true,
+                    // remove binding on close
+                    close: () => {
+                        EditTileDialog.stopCamera();
+                        ko.cleanNode($('#editTileDialog')[0]);
+                    },
+                })
+            }
+        }
+
 
         public open(): void {
 
-            $('#editTileDialog').dialog({
-                title: this.title,
-                width: 800,
-                height: 600,
-                modal: true,
-            });
+            // apply binding on open
+            ko.applyBindings(this, $('#editTileDialog')[0]);
+
+            $('#editTileDialog')
+                .dialog('option', 'title', this.isNew ? 'Add New Tile' : 'Edit Tile')
+                .dialog('open');
+        }
+
+        public openCamera(): void {
+
+            // show camera
+            this.selectedView('takePictureFromCamera');
+            this.isCameraVisible(true);
+
+            var video = <HTMLVideoElement> $('#takePictureFromCamera video')[0];
+
+            (<any>navigator).webkitGetUserMedia(
+                { video: true },
+                (stream) => {
+                    video.src = (<any>window).webkitURL.createObjectURL(stream);
+                    video.play();
+                },
+                (error) => console.log("Video capture error: ", error.code)
+            );
+
+        }
+
+        public static stopCamera(): void {
+        }
+
+        public takeCameraSnapshot(): void {
+
+            var video = <HTMLVideoElement> $('#takePictureFromCamera video')[0];
+            var canvas = <HTMLCanvasElement>$('#takePictureFromCamera canvas')[0];
+
+            var context = canvas.getContext("2d");
+            context.drawImage(video, 0, 0, 640, 480);
+
+            EditTileDialog.stopCamera();
+
+            // show snapshot
+            this.isCameraVisible(false);
         }
     }
 }

@@ -59,19 +59,19 @@
     
 </div>
 
-<div style="display: none;">
+<div style="display: none;" data-bind="stopBinding: true">
     <div id="editTileDialog">
-        <div id="takePicture" style="display: none;">
+        <div id="takePicture" data-bind="visible: selectedView() == 'takePicture'">
             
             <div style="margin: 20px auto; width: 600px; text-align: center;">
                 
                 <h2>How do you want to take a picture?</h2>
 
-                <div class="inline roundborder6 clickable">
+                <div class="inline roundborder6 clickable" data-bind="click: openCamera">
                     <img src="~/Content/imgs/camera.png"/>
                 </div>
 
-                <div class="inline roundborder6 clickable">
+                <div class="inline roundborder6 clickable" data-bind="click: function () { selectedView('upload') }">
                     <img src="~/Content/imgs/upload.png"/>
                 </div>
                 
@@ -81,11 +81,26 @@
 
         </div>
             
-        <div id="takePictureFromCamera" style="display: none;">
-                
+        <div id="takePictureFromCamera" data-bind="visible: selectedView() == 'takePictureFromCamera'">
+            
+            <div id="cameraView" data-bind="visible: isCameraVisible()">
+                <video id="video" width="640" height="480" autoplay></video>
+                <div style="text-align: center">
+                    <button data-bind="click: takeCameraSnapshot">Snap Photo</button>
+                </div>
+            </div>
+            
+            <div id="snapshotView" data-bind="visible: !isCameraVisible()">
+                <canvas id="canvas" width="640" height="480"></canvas>
+                <div style="text-align: center">             
+                    <button data-bind="click: openCamera">Take another one</button>
+                    <button>Save</button>
+                </div>
+            </div>
+        
         </div>
 
-        <div id="upload" style="display: none;">
+        <div id="upload" data-bind="visible: selectedView() == 'upload'">
             <div style="margin: 40px auto; width: 600px; text-align: center;">
                 
                 <h2>Select Image to Upload</h2>
@@ -96,7 +111,7 @@
             </div>
         </div>
 
-        <div id="uploadProgress" style="display: none;">
+        <div id="uploadProgress" data-bind="visible: selectedView() == 'uploadProgress'">
             <div style="margin: 40px auto; width: 600px; text-align: center;">
                 <h2>Uploading...</h2>
                 <img src="~/Content/imgs/progress-bar.jpg"/>
@@ -104,7 +119,7 @@
                 
         </div>
             
-        <div id="edtiTile">
+        <div id="edtiTile" data-bind="visible: selectedView() == 'edtiTile'">
             <div style="padding-right: 25px; position: relative; height: 470px;">
                     
                 <img src="~/Upload/tile1.png"/>

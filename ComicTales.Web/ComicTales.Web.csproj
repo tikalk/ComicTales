@@ -164,6 +164,7 @@
     <Content Include="Content\imgs\progress-bar.jpg" />
     <Content Include="Scripts\jquery.signalR-1.1.1.js" />
     <Content Include="Scripts\jquery.signalR-1.1.1.min.js" />
+    <Content Include="Scripts\knockout.extensions.js" />
     <Content Include="Upload\tile1.png" />
     <Content Include="Content\imgs\upload.png" />
     <Content Include="Content\Site.css" />
@@ -292,7 +293,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>54839</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:55742/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
