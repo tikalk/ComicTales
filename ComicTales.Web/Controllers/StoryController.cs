@@ -6,64 +6,73 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.SignalR;
 using MongoDB.Driver.Builders;
+using ComicTales.Entities;
 
 namespace ComicTales.Controllers
 {
     public class StoryController : Controller
     {
+        #region Private Fields
+
+        private readonly MongoDBRepository _mongoRepositiry;
+
+        #endregion
+
+        #region Ctor
+
+        public StoryController(MongoDBRepository mongoRepositiry)
+        {
+            _mongoRepositiry = mongoRepositiry;
+        }
+
+        #endregion
+
         //
         // GET: /Story/<id>
         [HttpGet]
         public ActionResult Index(string id)
         {
-            return View();
+            //see if this is a new story
+            if (string.IsNullOrEmpty(id))
+            {
+                return View(new ComicStory());
+            }
+
+            //fetch the data
+            ComicStory comicStory;
+            try
+            {
+                comicStory = _mongoRepositiry.GetStoryById(id);
+            }
+            catch (FormatException)
+            {
+                throw new ArgumentException("The story Id you have provided is invalid, or the story is corrupted");
+            }
+           
+            //ensure data is valid
+            if (comicStory == null)
+            {
+                throw new ArgumentException("The story you requested could not be found");
+            }
+
+            //return view
+            return View(comicStory);
         }
 
 
         //
         // GET: /Story/<id>
-        [HttpGet]
-        public ActionResult Edit(string id)
-        {
-            dynamic model = new ExpandoObject();
-
-            model.StoryId = id;
-            
-            return View(model);
-        }
-
         [HttpPost]
-        public ActionResult SaveTile(string id, string tileId)
+        public ActionResult Save(ComicStory comicStory)
         {
-            //do save 
+            _mongoRepositiry.SaveComicStory(comicStory);
 
+            //SignalR
             var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotifications>();
-            context.Clients.Group(id).notifyHasUpdates();
+            context.Clients.Group(comicStory.Id).notifyHasUpdates();
 
-            return Json(new {status = "OK"});
+            //return the Id in case the story is new
+            return Json(new { status = "OK", comicStoryId = comicStory.Id });
         }
-
-        public ActionResult GetTiles(string id)
-        {
-            var storyToken = id;
-
-            var repository = new MongoDBRepository(MongoDBConnector.Database);
-            var story = repository.GetStoryByToken(storyToken);
-
-            var data = new
-                           {
-                               tiles = (story.Tiles ?? new List<Tile>())
-                                   .Select(tile =>
-                                           new
-                                               {
-                                                   id = tile.TileId,
-                                                   imageUrl = "/Upload/" + tile.Image,
-                                               }
-                                   ).ToArray(),
-                           };
-
-            return Json(data, JsonRequestBehavior.AllowGet);
-        }
-
     }
 }
