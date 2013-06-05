@@ -59,6 +59,40 @@ namespace ComicTales.Controllers
             return View(comicStory);
         }
 
+        //
+        // GET: /Story/<id>/Edit
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            dynamic model = new ExpandoObject();
+            model.StoryId = id;
+
+            return View(model);
+        }
+
+        //
+        // GET: /Story/<id>/GetTiles
+        [HttpGet]
+        public ActionResult GetTiles(string id)
+        {
+            var story = _mongoRepositiry.GetStoryById(id);
+
+            var data = new
+                           {
+                               tiles = (story.Tiles ?? new List<ComicTile>())
+                                   .OrderBy(tile => tile.Order)
+                                   .Select((tile) =>
+                                           new
+                                               {
+                                                   idx = tile.Order,
+                                                   imageUrl = "/Upload/" + tile.Image,
+                                                   name = tile.Name,
+                                               }
+                                   ).ToArray(),
+                           };
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
         //
         // GET: /Story/<id>
