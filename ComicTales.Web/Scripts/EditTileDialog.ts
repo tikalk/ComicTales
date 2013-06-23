@@ -11,7 +11,9 @@ module ComicTales {
         public selectedView: KnockoutObservableString;
         public isCameraVisible = ko.observable(true);
 
-        constructor(private tile?: TileViewModel) {
+        constructor(
+            private okCallback: (tile: TileViewModel) => void,
+            private tile?: TileViewModel) {
 
             EditTileDialog.ensureDialogCreated();
 

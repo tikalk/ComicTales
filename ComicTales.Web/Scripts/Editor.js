@@ -20,12 +20,19 @@ var ComicTales;
             this.loadTiles();
         };
         EditorViewModel.prototype.addNewTile = function () {
-            new ComicTales.EditTileDialog().open();
+            var _this = this;
+            new ComicTales.EditTileDialog(function (tile) {
+                _this.saveTile(tile);
+            }).open();
         };
         EditorViewModel.prototype.editTile = function (tile) {
-            new ComicTales.EditTileDialog(tile).open();
+            new ComicTales.EditTileDialog(function (t) {
+            }, tile).open();
         };
         EditorViewModel.prototype.deleteTile = function (tile) {
+            // todo: not implemented yet
+                    };
+        EditorViewModel.prototype.saveTile = function (tile) {
             // todo: not implemented yet
                     };
         EditorViewModel.prototype.loadTiles = function () {

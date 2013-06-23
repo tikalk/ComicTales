@@ -4,7 +4,8 @@
 var ComicTales;
 (function (ComicTales) {
     var EditTileDialog = (function () {
-        function EditTileDialog(tile) {
+        function EditTileDialog(okCallback, tile) {
+            this.okCallback = okCallback;
             this.tile = tile;
             this.isCameraVisible = ko.observable(true);
             EditTileDialog.ensureDialogCreated();

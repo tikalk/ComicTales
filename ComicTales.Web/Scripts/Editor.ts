@@ -36,14 +36,22 @@ module ComicTales {
         }
 
         public addNewTile(): void {
-            new EditTileDialog().open();
+
+            new EditTileDialog((tile) => {
+                this.saveTile(tile);
+            }).open();
+
         }
 
         public editTile(tile: TileViewModel) {
-            new EditTileDialog(tile).open();
+            new EditTileDialog((t) => { }, tile).open();
         }
 
         public deleteTile(tile: TileViewModel) {
+            // todo: not implemented yet
+        }
+
+        public saveTile(tile: TileViewModel) {
             // todo: not implemented yet
         }
 
