@@ -52,7 +52,17 @@ module ComicTales {
         }
 
         public saveTile(tile: TileViewModel) {
-            // todo: not implemented yet
+            $.post('/Story/' + this.storyId + '/AddTile', tile, () => this.notifyUpdated());
+        }
+
+        public saveStory()
+        {
+            $.post('/Story/' + this.storyId + '/Save',() => this.notifyUpdated());
+        }
+
+        private notifyUpdated()
+        {
+            $.connection.comicStoryNotificationsHub.server.notifyHasUpdates(this.storyId);
         }
 
         private loadTiles() {
@@ -71,7 +81,7 @@ module ComicTales {
         private initConnection() {
 
             // Proxy created on the fly 
-            var storyNotifications = $.connection.storyNotifications;
+            var storyNotifications = $.connection.comicStoryNotificationsHub;
 
             // Declare a function on the chat hub so the server can invoke it          
             storyNotifications.client.notifyHasUpdates = () => {
@@ -80,8 +90,11 @@ module ComicTales {
             };
 
             // Start the connection
-            $.connection.hub.start(() => storyNotifications.server.join(this.storyId))
-                .done(() => { console.log('Now connected, connection ID=' + $.connection.hub.id + ', transport=' + $.connection.hub.transport.name); })
+            $.connection.hub.start()
+                .done(() => {
+                    console.log('Now connected, connection ID=' + $.connection.hub.id + ', transport=' + $.connection.hub.transport.name);
+                    storyNotifications.server.join(this.storyId);
+                })
                 .fail(() => { console.log('Could not Connect!'); });
         }
     }

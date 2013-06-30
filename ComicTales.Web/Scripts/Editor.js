@@ -39,6 +39,21 @@ var ComicTales;
         };
 
         EditorViewModel.prototype.saveTile = function (tile) {
+            var _this = this;
+            $.post('/Story/' + this.storyId + '/AddTile', tile, function () {
+                return _this.notifyUpdated();
+            });
+        };
+
+        EditorViewModel.prototype.saveStory = function () {
+            var _this = this;
+            $.post('/Story/' + this.storyId + '/Save', function () {
+                return _this.notifyUpdated();
+            });
+        };
+
+        EditorViewModel.prototype.notifyUpdated = function () {
+            $.connection.comicStoryNotificationsHub.server.notifyHasUpdates(this.storyId);
         };
 
         EditorViewModel.prototype.loadTiles = function () {
@@ -61,7 +76,7 @@ var ComicTales;
         EditorViewModel.prototype.initConnection = function () {
             var _this = this;
             // Proxy created on the fly
-            var storyNotifications = $.connection.storyNotifications;
+            var storyNotifications = $.connection.comicStoryNotificationsHub;
 
             // Declare a function on the chat hub so the server can invoke it
             storyNotifications.client.notifyHasUpdates = function () {
@@ -70,10 +85,9 @@ var ComicTales;
             };
 
             // Start the connection
-            $.connection.hub.start(function () {
-                return storyNotifications.server.join(_this.storyId);
-            }).done(function () {
+            $.connection.hub.start().done(function () {
                 console.log('Now connected, connection ID=' + $.connection.hub.id + ', transport=' + $.connection.hub.transport.name);
+                storyNotifications.server.join(_this.storyId);
             }).fail(function () {
                 console.log('Could not Connect!');
             });

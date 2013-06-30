@@ -11,6 +11,7 @@ using MongoDB.Bson;
 using Newtonsoft.Json.Bson;
 using MongoDB.Bson.Serialization;
 using ComicTales.MVC;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace ComicTales.Controllers
 {
@@ -133,6 +134,16 @@ namespace ComicTales.Controllers
 
             //return the Id in case the story is new
             return Json(new { status = "OK", comicStoryId = comicStory.Id });
+        }
+
+        [HttpPost]
+        public ActionResult AddTile(string id, ComicTile comicTile)
+        {
+            var story = _mongoRepositiry.GetStoryById(id);
+            story.Tiles.Add(comicTile);
+            _mongoRepositiry.SaveComicStory(story);
+
+            return Json(new { });
         }
     }
 }
