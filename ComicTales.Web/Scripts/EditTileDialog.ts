@@ -60,8 +60,11 @@ module ComicTales {
             //snapshot = snapshot.replace('data:image/png;base64,', '');
             $.post('/Story/123/SaveSnapshot', { dataURL: snapshot },
 
-            function(data, status) {
-                alert("Data: " + data + "\nStatus: " + status);
+            (data, status) => {
+                //alert("Data: " + data + "\nStatus: " + status);
+
+                this.imageUrl(data);
+                this.selectedView('edtiTile');
             });
 
         }

@@ -106,18 +106,20 @@ namespace ComicTales.Controllers
         public ActionResult SaveSnapshot(string id, string dataURL)
         {
             string fileNameWitPath = string.Empty;
+            string pathSuffix = string.Empty;
             string tick = DateTime.Now.Ticks.ToString();
             if (dataURL.Contains("jpeg"))
             {
                 dataURL = dataURL.Remove(0, 23);
-                fileNameWitPath = path + tick + ".jpeg";
+                pathSuffix = ".jpeg";
+                
             }
             else if (dataURL.Contains("png"))
             {
                 dataURL = dataURL.Remove(0, 22);
-                fileNameWitPath = path + tick + ".png";
+                pathSuffix = ".png";
             }
-            
+            fileNameWitPath = path + tick + pathSuffix;
             using (FileStream fs = new FileStream(fileNameWitPath, FileMode.Create))
             {
                 using (BinaryWriter bw = new BinaryWriter(fs))
@@ -129,7 +131,7 @@ namespace ComicTales.Controllers
                 }
             }
 
-            return Json(tick, JsonRequestBehavior.AllowGet);
+            return Json(tick + pathSuffix, JsonRequestBehavior.AllowGet);
         }
 
         //
