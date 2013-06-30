@@ -1,3 +1,6 @@
+/// <reference path="typings/jquery/jquery.d.ts" />
+/// <reference path="typings/knockout/knockout.d.ts" />
+/// <reference path="EditTileDialog.ts" />
 var ComicTales;
 (function (ComicTales) {
     function InitStory() {
@@ -15,7 +18,7 @@ var ComicTales;
             $.ajax({
                 url: 'Story/emptyId/Create',
                 type: 'post',
-                data: { storyName: this.storyName },
+                data: { Name: this.storyName() },
                 success: function (data) {
                     window.location.href = 'Story/' + data.id + '/Edit/';
                 }
@@ -25,3 +28,4 @@ var ComicTales;
     })();
     ComicTales.CreateStoryViewModel = CreateStoryViewModel;
 })(ComicTales || (ComicTales = {}));
+//@ sourceMappingURL=CreateStory.js.map

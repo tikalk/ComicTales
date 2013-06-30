@@ -13,16 +13,15 @@
 
         $(function () {
             ComicTales.InitStory();
-	    });
+        });
 
     </script>
 }
 
-
-
 <!-- HTML Templates -->
 <div id="createNewStory">
-     <button data-bind="click: createStory">
+    <input type="text" data-bind="value: storyName, valueUpdate: 'afterkeydown'" maxlength="256" />
+    <button data-bind="click: createStory, enable: storyName().length > 3">
         Create New Story
     </button>
 </div>

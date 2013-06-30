@@ -18,7 +18,6 @@ module ComicTales {
 
         constructor() {
             this.storyName = ko.observable('');
-          
         }
 
         public createStory(): void {
@@ -26,7 +25,7 @@ module ComicTales {
             $.ajax({
                 url: 'Story/emptyId/Create',
                 type: 'post',
-                data: { storyName: this.storyName },
+                data: { Name: this.storyName() }, //Name is the ComicStory.cs property
                 success: (data) => {
                     window.location.href = 'Story/' + data.id + '/Edit/';
                 }

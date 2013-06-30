@@ -10,6 +10,7 @@ using ComicTales.Entities;
 using MongoDB.Bson;
 using Newtonsoft.Json.Bson;
 using MongoDB.Bson.Serialization;
+using ComicTales.MVC;
 
 namespace ComicTales.Controllers
 {
@@ -63,9 +64,11 @@ namespace ComicTales.Controllers
         }
 
         [HttpPost]
-        public JsonResult Create()
+        public JsonNetResult Create(ComicStory comicStory)
         {
-            ComicStory comicStory = new ComicStory();
+            //reset the Id
+            comicStory.Id = null;
+
             try
             {
                 _mongoRepositiry.SaveComicStory(comicStory);
@@ -75,7 +78,11 @@ namespace ComicTales.Controllers
                 throw new ArgumentException("The story could not be created");
             }
 
-            return Json(new { id = comicStory.Id });
+            //ActionResult
+            JsonNetResult jsonNetResult = new JsonNetResult();
+            jsonNetResult.Formatting = Newtonsoft.Json.Formatting.Indented;
+            jsonNetResult.Data = comicStory;
+            return jsonNetResult;
         }
 
         //
