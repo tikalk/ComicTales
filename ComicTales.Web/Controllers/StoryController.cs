@@ -102,7 +102,7 @@ namespace ComicTales.Controllers
             _mongoRepositiry.SaveComicStory(comicStory);
 
             //SignalR
-            var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotifications>();
+            var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotificationsHub>();
             context.Clients.Group(comicStory.Id).notifyHasUpdates();
 
             //return the Id in case the story is new

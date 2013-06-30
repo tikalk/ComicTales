@@ -157,10 +157,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="[Code]\EditorNotificationHub.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="[Code]\Entities\ComicStory.cs" />
     <Compile Include="[Code]\Entities\ComicTile.cs" />
+    <Compile Include="[Code]\SignalR\EditorNotificationHub.cs" />
+    <Compile Include="[Code]\SignalR\HubAuthorizationAttribute.cs" />
+    <Compile Include="[Code]\SignalR\SignalRLoggingPipelineModule.cs" />
     <Compile Include="[Code]\Entities\TileOverlay.cs" />
     <Compile Include="[Code]\Entities\TileOverlayTypes.cs" />
     <Compile Include="[Code]\MongoDBRepository.cs" />

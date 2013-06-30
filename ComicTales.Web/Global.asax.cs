@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ComicTales;
+using ComicTales.SignalR;
+using Microsoft.AspNet.SignalR;
 
 namespace ComicTales
 {
@@ -16,7 +18,9 @@ namespace ComicTales
         protected void Application_Start()
         {
             // Register the default hubs route: ~/signalr
-            RouteTable.Routes.MapHubs();
+            var hubConfiguration = new HubConfiguration { EnableDetailedErrors = true }; //for debug
+            RouteTable.Routes.MapHubs(hubConfiguration);
+            GlobalHost.HubPipeline.AddModule(new SignalRLoggingPipelineModule());
 
             AreaRegistration.RegisterAllAreas();
 
