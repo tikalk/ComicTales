@@ -17,7 +17,34 @@
     <script type="text/javascript">
 
 	    $(function() {
-		    ComicTales.Init('@Model.StoryId');
+	        var editorViewModel = ComicTales.Init('@Model.StoryId');
+
+	        var r = new Resumable({
+	            target: '/Story/@Model.StoryId/UploadFile',
+	            query: {},
+	            testChunks: false,
+	            simultaneousUploads: 1
+	        });
+	        // Resumable.js isn't supported, fall back on a different method
+	        if (!r.support) alert("Cannot upload!");
+
+	        r.assignBrowse(document.getElementById('uploadSpan'));
+
+	        r.on('fileAdded', function(file){
+	            r.upload();
+	        });
+
+	        r.on('fileError', function (file, message) {
+	            r.cancel();
+	            alert("Cancel");
+	        });
+
+	        r.on('fileSuccess', function (file) {
+
+	            editorViewModel.editTileDialog.selectedView('edtiTile');
+	            editorViewModel.editTileDialog.imageUrl(file.uniqueIdentifier + '_' + file.fileName);
+	            //alert(file.uniqueIdentifier + '_' + file.fileName);
+	        });
 	    });
 
     </script>
@@ -105,10 +132,10 @@
             <div style="margin: 40px auto; width: 600px; text-align: center;">
                 
                 <h2>Select Image to Upload</h2>
-                <input type="file" />
+                <span id="uploadSpan">
+                    Browse file to upload...
+                </span>
                 <br/>
-                <br/>
-                <button>Submit</button>
             </div>
         </div>
 
@@ -123,7 +150,7 @@
         <div id="edtiTile" data-bind="visible: selectedView() == 'edtiTile'">
             <div style="padding-right: 25px; position: relative; height: 470px;">
                     
-                <img src="~/Upload/tile1.png"/>
+                <img data-bind="attr: {src: '/Upload/'+imageUrl()}"/>
                 <div style="position: absolute; right: 0; top: 0; width: 250px; height: 400px; background: rgb(237, 237, 237); border: 1px solid darkgray; border-radius: 6px; padding: 4px;">
                     <h3 style="margin: 0">Toolbox</h3>
                     <div class="toolbox">

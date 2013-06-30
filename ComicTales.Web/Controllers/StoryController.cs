@@ -12,6 +12,7 @@ using Newtonsoft.Json.Bson;
 using MongoDB.Bson.Serialization;
 using ComicTales.MVC;
 using Microsoft.AspNet.SignalR.Hubs;
+using System.IO;
 
 namespace ComicTales.Controllers
 {
@@ -53,7 +54,7 @@ namespace ComicTales.Controllers
             {
                 throw new ArgumentException("The story Id you have provided is invalid, or the story is corrupted");
             }
-           
+
             //ensure data is valid
             if (comicStory == null)
             {
@@ -105,18 +106,18 @@ namespace ComicTales.Controllers
             var story = _mongoRepositiry.GetStoryById(id);
 
             var data = new
-                           {
-                               tiles = (story.Tiles ?? new List<ComicTile>())
-                                   .OrderBy(tile => tile.Order)
-                                   .Select((tile) =>
-                                           new
-                                               {
-                                                   idx = tile.Order,
-                                                   imageUrl = "/Upload/" + tile.Image,
-                                                   name = tile.Name,
-                                               }
-                                   ).ToArray(),
-                           };
+            {
+                tiles = (story.Tiles ?? new List<ComicTile>())
+                    .OrderBy(tile => tile.Order)
+                    .Select((tile) =>
+                            new
+                            {
+                                idx = tile.Order,
+                                imageUrl = "/Upload/" + tile.Image,
+                                name = tile.Name,
+                            }
+                    ).ToArray(),
+            };
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -144,6 +145,54 @@ namespace ComicTales.Controllers
             _mongoRepositiry.SaveComicStory(story);
 
             return Json(new { });
+        }
+
+        [HttpPost]
+        public ActionResult UploadFile(string id, int resumableChunkNumber, int resumableChunkSize, int resumableTotalSize, string resumableIdentifier, string resumableFilename, string resumableRelativePath)
+        {
+            string fileName = resumableIdentifier + "_" + resumableFilename;
+            string filePath = Path.Combine(this.Server.MapPath("/Upload"), fileName);
+
+            var stream = Request.Files[0].InputStream;
+
+            var file = new FileInfo(filePath);
+            if (!file.Directory.Exists)
+            {
+                file.Directory.Create();
+            }
+            int offset = (resumableChunkNumber - 1) * resumableChunkSize;
+
+            using (var fileStream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                fileStream.Seek(offset, SeekOrigin.Begin);
+
+                var buffer = new byte[1024];
+
+                for (; ; )
+                {
+                    var read = stream.Read(buffer, 0, buffer.Length);
+                    if (read <= 0)
+                        break;
+
+                    fileStream.Write(buffer, 0, read);
+                    fileStream.Flush();
+                }
+            }
+
+            string ex = string.Format("Igor is hearting me!!!\r\n" +
+                "id: {0}\r\n" +
+                "resumableChunkNumber: {1}\r\n" +
+                "resumableChunkSize: {2}\r\n" +
+                "resumableFilename: {3}\r\n" +
+                "resumableIdentifier: {4}\r\n" +
+                "resumableRelativePath: {5}\r\n" +
+                "resumableTotalSize: {6}\r\n" +
+                "filePath: {7}\r\n"
+                , id, resumableChunkNumber, resumableChunkSize, resumableFilename,
+                resumableIdentifier, resumableRelativePath, resumableTotalSize, filePath);
+            //throw new Exception(ex);
+
+            return Json(new { imageUrl = fileName, });
         }
     }
 }

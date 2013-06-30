@@ -10,6 +10,7 @@ module ComicTales {
 
         public selectedView: KnockoutObservableString;
         public isCameraVisible = ko.observable(true);
+        public imageUrl = ko.observable("");
 
         constructor(
             private okCallback: (tile: TileViewModel) => void,

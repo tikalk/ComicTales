@@ -8,6 +8,7 @@ var ComicTales;
             this.okCallback = okCallback;
             this.tile = tile;
             this.isCameraVisible = ko.observable(true);
+            this.imageUrl = ko.observable("");
             EditTileDialog.ensureDialogCreated();
 
             this.title = tile ? 'Edit Tile' : 'Add New Tile';

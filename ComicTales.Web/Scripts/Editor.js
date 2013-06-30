@@ -4,6 +4,8 @@ var ComicTales;
         var viewModel = new EditorViewModel(storyId);
 
         ko.applyBindings(viewModel);
+
+        return viewModel;
     }
     ComicTales.Init = Init;
 
@@ -15,9 +17,6 @@ var ComicTales;
             this.hasUpdates = ko.observable(false);
             // load data
             this.loadTiles();
-
-            // Start the connection
-            this.initConnection();
         }
         EditorViewModel.prototype.refresh = function () {
             this.loadTiles();
@@ -25,14 +24,18 @@ var ComicTales;
 
         EditorViewModel.prototype.addNewTile = function () {
             var _this = this;
-            new ComicTales.EditTileDialog(function (tile) {
+            this.editTileDialog = new ComicTales.EditTileDialog(function (tile) {
                 _this.saveTile(tile);
-            }).open();
+            });
+
+            this.editTileDialog.open();
         };
 
         EditorViewModel.prototype.editTile = function (tile) {
-            new ComicTales.EditTileDialog(function (t) {
-            }, tile).open();
+            this.editTileDialog = new ComicTales.EditTileDialog(function (t) {
+            }, tile);
+
+            this.editTileDialog.open();
         };
 
         EditorViewModel.prototype.deleteTile = function (tile) {

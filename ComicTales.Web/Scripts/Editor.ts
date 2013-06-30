@@ -8,11 +8,13 @@ interface JQueryStatic {
 
 module ComicTales {
 
-    export function Init(storyId: string) {
+    export function Init(storyId: string): EditorViewModel{
 
         var viewModel = new EditorViewModel(storyId);
 
         ko.applyBindings(viewModel);
+
+        return viewModel;
 
     }
 
@@ -21,6 +23,7 @@ module ComicTales {
         public tiles = ko.observableArray([]);
         public isLoading = ko.observable(false);
         public hasUpdates = ko.observable(false);
+        public editTileDialog: EditTileDialog;
 
         constructor(private storyId: string) {
 
@@ -28,7 +31,7 @@ module ComicTales {
             this.loadTiles();
 
             // Start the connection
-            this.initConnection();
+            //this.initConnection();
         }
 
         public refresh(): void {
@@ -37,14 +40,18 @@ module ComicTales {
 
         public addNewTile(): void {
 
-            new EditTileDialog((tile) => {
+            this.editTileDialog = new EditTileDialog((tile) => {
                 this.saveTile(tile);
-            }).open();
+            });
+            
+            this.editTileDialog.open();
 
         }
 
         public editTile(tile: TileViewModel) {
-            new EditTileDialog((t) => { }, tile).open();
+            this.editTileDialog = new EditTileDialog((t) => { }, tile);
+            
+            this.editTileDialog.open();
         }
 
         public deleteTile(tile: TileViewModel) {
