@@ -61,7 +61,7 @@ var ComicTales;
         EditorViewModel.prototype.initConnection = function () {
             var _this = this;
             // Proxy created on the fly
-            var storyNotifications = $.connection.storyNotifications;
+            var storyNotifications = $.connection.comicStoryNotificationsHub;
 
             // Declare a function on the chat hub so the server can invoke it
             storyNotifications.client.notifyHasUpdates = function () {

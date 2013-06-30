@@ -71,7 +71,7 @@ module ComicTales {
         private initConnection() {
 
             // Proxy created on the fly 
-            var storyNotifications = $.connection.storyNotifications;
+            var storyNotifications = $.connection.comicStoryNotificationsHub;
 
             // Declare a function on the chat hub so the server can invoke it          
             storyNotifications.client.notifyHasUpdates = () => {

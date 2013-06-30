@@ -183,6 +183,9 @@
     <Content Include="Scripts\CreateStory.js">
       <DependentUpon>CreateStory.ts</DependentUpon>
     </Content>
+    <Content Include="Scripts\Editor.min.js">
+      <DependentUpon>Editor.ts</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.signalR-1.1.1.js" />
     <Content Include="Scripts\jquery.signalR-1.1.1.min.js" />
     <Content Include="Scripts\knockout.extensions.js" />
@@ -275,6 +278,9 @@
       <DependentUpon>Editor.ts</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Editor.js.map">
+      <DependentUpon>Editor.ts</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
