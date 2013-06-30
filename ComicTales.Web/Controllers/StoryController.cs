@@ -105,9 +105,19 @@ namespace ComicTales.Controllers
         [HttpPost]
         public ActionResult SaveSnapshot(string id, string dataURL)
         {
-            dataURL = dataURL.Remove(0, 22);
+            string fileNameWitPath = string.Empty;
             string tick = DateTime.Now.Ticks.ToString();
-            string fileNameWitPath = path + tick + ".png";
+            if (dataURL.Contains("jpeg"))
+            {
+                dataURL = dataURL.Remove(0, 23);
+                fileNameWitPath = path + tick + ".jpeg";
+            }
+            else if (dataURL.Contains("png"))
+            {
+                dataURL = dataURL.Remove(0, 22);
+                fileNameWitPath = path + tick + ".png";
+            }
+            
             using (FileStream fs = new FileStream(fileNameWitPath, FileMode.Create))
             {
                 using (BinaryWriter bw = new BinaryWriter(fs))

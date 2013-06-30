@@ -57,7 +57,7 @@ module ComicTales {
 
         public saveSnapshot(snapshot): void {
 
-            snapshot = snapshot.replace('data:image/png;base64,', '');
+            //snapshot = snapshot.replace('data:image/png;base64,', '');
             $.post('/Story/123/SaveSnapshot', { dataURL: snapshot },
 
             function(data, status) {
