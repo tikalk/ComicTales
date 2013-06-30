@@ -71,12 +71,12 @@ namespace ComicTales
 
         private void Log(string p)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void RejoinGroup(string s)
         {
-            throw new NotImplementedException();
+           
         }
 
         #endregion
