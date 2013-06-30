@@ -21,6 +21,11 @@ namespace ComicTales
             Clients.Group(groupId).addMessageToGroup(message);
         }
 
+        public void NotifyHasUpdates(string groupId)
+        {
+            Clients.OthersInGroup(groupId).notifyHasUpdates();
+        }
+
         #region Who Is Connected
 
         private List<string> _connections = new List<string>();

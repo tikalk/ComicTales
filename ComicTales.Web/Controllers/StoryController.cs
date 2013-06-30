@@ -154,18 +154,19 @@ namespace ComicTales.Controllers
             _mongoRepositiry.SaveComicStory(comicStory);
 
             //SignalR
-            var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotificationsHub>();
-            context.Clients.Group(comicStory.Id).notifyHasUpdates();
+            //var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotificationsHub>();
+            //context.Clients.Group(comicStory.Id).notifyHasUpdates();
 
             //return the Id in case the story is new
             return Json(new { status = "OK", comicStoryId = comicStory.Id });
         }
 
         [HttpPost]
-        public ActionResult AddTile(string id, ComicTile comicTile)
+        public ActionResult AddTile(string id, string imageUrl)
         {
+            var tile = new ComicTile { Image = imageUrl };
             var story = _mongoRepositiry.GetStoryById(id);
-            story.Tiles.Add(comicTile);
+            story.Tiles.Add(tile);
             _mongoRepositiry.SaveComicStory(story);
 
             return Json(new { });

@@ -31,7 +31,7 @@ module ComicTales {
             this.loadTiles();
 
             // Start the connection
-            //this.initConnection();
+            this.initConnection();
         }
 
         public refresh(): void {
@@ -59,7 +59,10 @@ module ComicTales {
         }
 
         public saveTile(tile: TileViewModel) {
-            $.post('/Story/' + this.storyId + '/AddTile', tile, () => this.notifyUpdated());
+            $.post('/Story/' + this.storyId + '/AddTile', tile, () => {
+                this.notifyUpdated();
+                this.refresh();
+            });
         }
 
         public saveStory()
@@ -108,7 +111,6 @@ module ComicTales {
 
     export interface TileViewModel {
 
-        id: string;
         imageUrl: string;
     }
 }

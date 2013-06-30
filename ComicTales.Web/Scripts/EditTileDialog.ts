@@ -101,5 +101,16 @@ module ComicTales {
             // show snapshot
             this.isCameraVisible(false);
         }
+
+        public saveTile(): void {
+
+            var tile = {
+                imageUrl: this.imageUrl()
+            };
+
+            this.okCallback(tile);
+
+            $('#editTileDialog').dialog("close");
+        }
     }
 }
