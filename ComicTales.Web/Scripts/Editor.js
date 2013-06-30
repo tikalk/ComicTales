@@ -19,6 +19,7 @@ var ComicTales;
         }
         EditorViewModel.prototype.refresh = function () {
             this.loadTiles();
+            this.hasUpdates(false);
         };
         EditorViewModel.prototype.addNewTile = function () {
             var _this = this;

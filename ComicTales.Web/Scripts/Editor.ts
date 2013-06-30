@@ -36,6 +36,7 @@ module ComicTales {
 
         public refresh(): void {
             this.loadTiles();
+            this.hasUpdates(false);
         }
 
         public addNewTile(): void {
