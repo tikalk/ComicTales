@@ -10,7 +10,7 @@ module ComicTales {
 
         public selectedView: KnockoutObservableString;
         public isCameraVisible = ko.observable(true);
-        public imageUrl = ko.observable("");
+        public imageUrl = ko.observable("../Content/imgs/empty.png");
 
         constructor(
             private okCallback: (tile: TileViewModel) => void,
@@ -57,7 +57,7 @@ module ComicTales {
 
         public saveSnapshot(snapshot): void {
 
-            snapshot = snapshot.replace('data:image/png;base64,', '');
+            //snapshot = snapshot.replace('data:image/png;base64,', '');
             $.post('/Story/123/SaveSnapshot', { dataURL: snapshot },
 
             function(data, status) {

@@ -8,7 +8,7 @@ var ComicTales;
             this.okCallback = okCallback;
             this.tile = tile;
             this.isCameraVisible = ko.observable(true);
-            this.imageUrl = ko.observable("");
+            this.imageUrl = ko.observable("../Content/imgs/empty.png");
             EditTileDialog.ensureDialogCreated();
 
             this.title = tile ? 'Edit Tile' : 'Add New Tile';
@@ -41,7 +41,7 @@ var ComicTales;
         };
 
         EditTileDialog.prototype.saveSnapshot = function (snapshot) {
-            snapshot = snapshot.replace('data:image/png;base64,', '');
+            //snapshot = snapshot.replace('data:image/png;base64,', '');
             $.post('/Story/123/SaveSnapshot', { dataURL: snapshot }, function (data, status) {
                 alert("Data: " + data + "\nStatus: " + status);
             });

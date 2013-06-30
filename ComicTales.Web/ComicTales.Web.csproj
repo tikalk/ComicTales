@@ -179,6 +179,7 @@
     <Content Include="Content\imgs\camera.png" />
     <Content Include="Content\imgs\delete.png" />
     <Content Include="Content\imgs\edit.png" />
+    <Content Include="Content\imgs\empty.png" />
     <Content Include="Content\imgs\progress-bar.jpg" />
     <TypeScriptCompile Include="Scripts\CreateStory.ts" />
     <Content Include="Scripts\CreateStory.js">
