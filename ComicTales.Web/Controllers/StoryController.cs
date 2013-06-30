@@ -99,7 +99,7 @@ namespace ComicTales.Controllers
             return View(model);
         }
 
-        static string path = @"C:\work\ComicTales\ComicTales.Web\Upload\";
+        //static string path = @"C:\work\ComicTales\ComicTales.Web\Upload\";
         //
         // GET: /Story/<id>
         [HttpPost]
@@ -119,7 +119,8 @@ namespace ComicTales.Controllers
                 dataURL = dataURL.Remove(0, 22);
                 pathSuffix = ".png";
             }
-            fileNameWitPath = path + tick + pathSuffix;
+            var path = Request.MapPath("~/Upload");
+            fileNameWitPath = Path.Combine( path, tick + pathSuffix);
             using (FileStream fs = new FileStream(fileNameWitPath, FileMode.Create))
             {
                 using (BinaryWriter bw = new BinaryWriter(fs))
