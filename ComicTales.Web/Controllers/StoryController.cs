@@ -163,7 +163,7 @@ namespace ComicTales.Controllers
         [HttpPost]
         public ActionResult Save(ComicStory comicStory)
         {
-            _mongoRepositiry.SaveComicStory(comicStory);
+            //_mongoRepositiry.SaveComicStory(comicStory);
 
             //SignalR
             //var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotificationsHub>();
