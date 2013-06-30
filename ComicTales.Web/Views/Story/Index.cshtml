@@ -5,6 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Head
+{
+    <script type="text/javascript" src="~/Scripts/CreateStory.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            ComicTales.InitStory();
+	    });
+
+    </script>
+}
 
 
-the body
+
+<!-- HTML Templates -->
+<div id="createNewStory">
+     <button data-bind="click: createStory">
+        Create New Story
+    </button>
+</div>

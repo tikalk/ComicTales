@@ -179,6 +179,10 @@
     <Content Include="Content\imgs\delete.png" />
     <Content Include="Content\imgs\edit.png" />
     <Content Include="Content\imgs\progress-bar.jpg" />
+    <TypeScriptCompile Include="Scripts\CreateStory.ts" />
+    <Content Include="Scripts\CreateStory.js">
+      <DependentUpon>CreateStory.ts</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.signalR-1.1.1.js" />
     <Content Include="Scripts\jquery.signalR-1.1.1.min.js" />
     <Content Include="Scripts\knockout.extensions.js" />

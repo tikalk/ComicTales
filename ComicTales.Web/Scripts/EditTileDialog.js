@@ -1,6 +1,3 @@
-/// <reference path="typings/jquery/jquery.d.ts" />
-/// <reference path="typings/jqueryui/jqueryui.d.ts" />
-/// <reference path="typings/knockout/knockout.d.ts" />
 var ComicTales;
 (function (ComicTales) {
     var EditTileDialog = (function () {
@@ -17,13 +14,11 @@ var ComicTales;
         }
         EditTileDialog.ensureDialogCreated = function () {
             if (!EditTileDialog.dialogCreated) {
-                // create dialog once
                 $('#editTileDialog').dialog({
                     autoOpen: false,
                     width: 800,
                     height: 600,
                     modal: true,
-                    // remove binding on close
                     close: function () {
                         EditTileDialog.stopCamera();
                         ko.cleanNode($('#editTileDialog')[0]);
@@ -33,14 +28,12 @@ var ComicTales;
         };
 
         EditTileDialog.prototype.open = function () {
-            // apply binding on open
             ko.applyBindings(this, $('#editTileDialog')[0]);
 
             $('#editTileDialog').dialog('option', 'title', this.isNew ? 'Add New Tile' : 'Edit Tile').dialog('open');
         };
 
         EditTileDialog.prototype.openCamera = function () {
-            // show camera
             this.selectedView('takePictureFromCamera');
             this.isCameraVisible(true);
 
@@ -66,7 +59,6 @@ var ComicTales;
 
             EditTileDialog.stopCamera();
 
-            // show snapshot
             this.isCameraVisible(false);
         };
         EditTileDialog.dialogCreated = false;
@@ -74,4 +66,3 @@ var ComicTales;
     })();
     ComicTales.EditTileDialog = EditTileDialog;
 })(ComicTales || (ComicTales = {}));
-//@ sourceMappingURL=EditTileDialog.js.map

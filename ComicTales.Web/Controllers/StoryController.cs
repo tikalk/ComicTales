@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.SignalR;
 using MongoDB.Driver.Builders;
 using ComicTales.Entities;
+using MongoDB.Bson;
+using Newtonsoft.Json.Bson;
+using MongoDB.Bson.Serialization;
 
 namespace ComicTales.Controllers
 {
@@ -57,6 +60,22 @@ namespace ComicTales.Controllers
 
             //return view
             return View(comicStory);
+        }
+
+        [HttpPost]
+        public JsonResult Create()
+        {
+            ComicStory comicStory = new ComicStory();
+            try
+            {
+                _mongoRepositiry.SaveComicStory(comicStory);
+            }
+            catch (FormatException)
+            {
+                throw new ArgumentException("The story could not be created");
+            }
+
+            return Json(new { id = comicStory.Id });
         }
 
         //
