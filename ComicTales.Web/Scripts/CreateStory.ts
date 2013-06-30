@@ -23,7 +23,7 @@ module ComicTales {
         public createStory(): void {
 
             $.ajax({
-                url: 'Story/emptyId/Create',
+                url: '/Story/emptyId/Create',
                 type: 'post',
                 data: { Name: this.storyName() }, //Name is the ComicStory.cs property
                 success: (data) => {
