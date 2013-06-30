@@ -21,7 +21,7 @@ var ComicTales;
                 },
                 success: //Name is the ComicStory.cs property
                 function (data) {
-                    window.location.href = 'Story/' + data.id + '/Edit/';
+                    window.location.href = '/Story/' + data.id + '/Edit/';
                 }
             });
         };
