@@ -39,10 +39,20 @@ var ComicTales;
         };
 
         EditorViewModel.prototype.saveTile = function (tile) {
+            var _this = this;
+            $.post('/Story/' + this.storyId + '/AddTile', tile, function () {
+                return _this.notifyUpdated();
+            });
         };
 
         EditorViewModel.prototype.saveStory = function () {
-            $.post('/Story/' + this.storyId + '/Save');
+            var _this = this;
+            $.post('/Story/' + this.storyId + '/Save', function () {
+                return _this.notifyUpdated();
+            });
+        };
+
+        EditorViewModel.prototype.notifyUpdated = function () {
             $.connection.comicStoryNotificationsHub.server.notifyHasUpdates(this.storyId);
         };
 

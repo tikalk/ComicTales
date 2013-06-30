@@ -52,12 +52,16 @@ module ComicTales {
         }
 
         public saveTile(tile: TileViewModel) {
-            // todo: not implemented yet
+            $.post('/Story/' + this.storyId + '/AddTile', tile, () => this.notifyUpdated());
         }
 
         public saveStory()
         {
-            $.post('/Story/' + this.storyId + '/Save');
+            $.post('/Story/' + this.storyId + '/Save',() => this.notifyUpdated());
+        }
+
+        private notifyUpdated()
+        {
             $.connection.comicStoryNotificationsHub.server.notifyHasUpdates(this.storyId);
         }
 

@@ -119,7 +119,7 @@ namespace ComicTales.Controllers
         [HttpPost]
         public ActionResult Save(ComicStory comicStory)
         {
-            //_mongoRepositiry.SaveComicStory(comicStory);
+            _mongoRepositiry.SaveComicStory(comicStory);
 
             //SignalR
             var context = GlobalHost.ConnectionManager.GetHubContext<StoryNotificationsHub>();
@@ -127,6 +127,16 @@ namespace ComicTales.Controllers
 
             //return the Id in case the story is new
             return Json(new { status = "OK", comicStoryId = comicStory.Id });
+        }
+
+        [HttpPost]
+        public ActionResult AddTile(string id, ComicTile comicTile)
+        {
+            var story = _mongoRepositiry.GetStoryById(id);
+            story.Tiles.Add(comicTile);
+            _mongoRepositiry.SaveComicStory(story);
+
+            return Json(new { });
         }
     }
 }
