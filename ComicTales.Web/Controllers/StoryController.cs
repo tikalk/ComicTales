@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -96,6 +97,29 @@ namespace ComicTales.Controllers
             model.StoryId = id;
 
             return View(model);
+        }
+
+        static string path = @"C:\work\ComicTales\ComicTales.Web\Upload\";
+        //
+        // GET: /Story/<id>
+        [HttpPost]
+        public ActionResult SaveSnapshot(string id, string dataURL)
+        {
+            dataURL = dataURL.Remove(0, 22);
+            string tick = DateTime.Now.Ticks.ToString();
+            string fileNameWitPath = path + tick + ".png";
+            using (FileStream fs = new FileStream(fileNameWitPath, FileMode.Create))
+            {
+                using (BinaryWriter bw = new BinaryWriter(fs))
+                {
+                    byte[] snapshotData = Convert.FromBase64String(dataURL);
+                    bw.Write(snapshotData);
+                    bw.Close();
+
+                }
+            }
+
+            return Json(tick, JsonRequestBehavior.AllowGet);
         }
 
         //

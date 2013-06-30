@@ -54,6 +54,18 @@ module ComicTales {
                 .dialog('open');
         }
 
+
+        public saveSnapshot(snapshot): void {
+
+            snapshot = snapshot.replace('data:image/png;base64,', '');
+            $.post('/Story/123/SaveSnapshot', { dataURL: snapshot },
+
+            function(data, status) {
+                alert("Data: " + data + "\nStatus: " + status);
+            });
+
+        }
+
         public openCamera(): void {
 
             // show camera

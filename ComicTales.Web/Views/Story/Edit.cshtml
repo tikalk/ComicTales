@@ -122,7 +122,7 @@
                 <canvas id="canvas" width="640" height="480"></canvas>
                 <div style="text-align: center">             
                     <button data-bind="click: openCamera">Take another one</button>
-                    <button>Save</button>
+                    <button data-bind="click: function () { saveSnapshot(document.getElementById('canvas').toDataURL('image/jpeg')); }">Save</button>
                 </div>
             </div>
         
