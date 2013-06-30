@@ -55,6 +55,12 @@ module ComicTales {
             // todo: not implemented yet
         }
 
+        public saveStory()
+        {
+            $.post('/Story/' + this.storyId + '/Save');
+            $.connection.comicStoryNotificationsHub.server.notifyHasUpdates(this.storyId);
+        }
+
         private loadTiles() {
             this.isLoading(true);
             $.get('/Story/' + this.storyId + '/GetTiles', (data, textStatus, jqXHR) => {
@@ -80,8 +86,11 @@ module ComicTales {
             };
 
             // Start the connection
-            $.connection.hub.start(() => storyNotifications.server.join(this.storyId))
-                .done(() => { console.log('Now connected, connection ID=' + $.connection.hub.id + ', transport=' + $.connection.hub.transport.name); })
+            $.connection.hub.start()
+                .done(() => {
+                    console.log('Now connected, connection ID=' + $.connection.hub.id + ', transport=' + $.connection.hub.transport.name);
+                    storyNotifications.server.join(this.storyId);
+                })
                 .fail(() => { console.log('Could not Connect!'); });
         }
     }

@@ -21,6 +21,11 @@ namespace ComicTales
             Clients.Group(groupId).addMessageToGroup(message);
         }
 
+        public void NotifyHasUpdates(string groupId)
+        {
+            Clients.OthersInGroup(groupId).notifyHasUpdates();
+        }
+
         #region Who Is Connected
 
         private List<string> _connections = new List<string>();
@@ -71,12 +76,12 @@ namespace ComicTales
 
         private void Log(string p)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void RejoinGroup(string s)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         #endregion

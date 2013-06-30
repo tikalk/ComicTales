@@ -41,6 +41,11 @@ var ComicTales;
         EditorViewModel.prototype.saveTile = function (tile) {
         };
 
+        EditorViewModel.prototype.saveStory = function () {
+            $.post('/Story/' + this.storyId + '/Save');
+            $.connection.comicStoryNotificationsHub.server.notifyHasUpdates(this.storyId);
+        };
+
         EditorViewModel.prototype.loadTiles = function () {
             var _this = this;
             this.isLoading(true);
@@ -70,10 +75,9 @@ var ComicTales;
             };
 
             // Start the connection
-            $.connection.hub.start(function () {
-                return storyNotifications.server.join(_this.storyId);
-            }).done(function () {
+            $.connection.hub.start().done(function () {
                 console.log('Now connected, connection ID=' + $.connection.hub.id + ', transport=' + $.connection.hub.transport.name);
+                storyNotifications.server.join(_this.storyId);
             }).fail(function () {
                 console.log('Could not Connect!');
             });
