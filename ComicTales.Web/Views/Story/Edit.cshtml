@@ -74,8 +74,8 @@
         <img data-bind="attr: { src: imageUrl }"/>
 
         <div class="list-item-actions">
-            <div class="list-item-action" data-bind="click: $root.editTile"><img src="~/Content/imgs/edit.png"/></div>
-            <div class="list-item-action" data-bind="click: $root.deleteTile"><img src="~/Content/imgs/delete.png"/></div>
+            <div class="list-item-action tile-action-edit" data-bind="click: $root.editTile"></div>
+            <div class="list-item-action tile-action-delete" data-bind="click: $root.deleteTile"></div>
         </div>
     </div>
     <!-- /ko -->

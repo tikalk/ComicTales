@@ -1,120 +1,164 @@
-﻿body {
-	padding: 0;
-    margin: 0;
-	font-family: sans-serif;
+/* line 50, tile-action/*.png */
+.tile-action-sprite, .tile-action-delete, .tile-action-edit {
+  background: url('/Content/imgs/tile-action-sea7b78c774.png') no-repeat;
 }
 
+/* line 60, ../../../../Users/igorz/AppData/Local/Temp/Mindscape/WebWorkbench/Ruby193/Ruby193/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tile-action-delete {
+  background-position: 0 -32px;
+  height: 32px;
+  width: 32px;
+}
+
+/* line 60, ../../../../Users/igorz/AppData/Local/Temp/Mindscape/WebWorkbench/Ruby193/Ruby193/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tile-action-edit {
+  background-position: 0 0;
+  height: 32px;
+  width: 32px;
+}
+
+/* line 8, sass/Site.scss */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: normal;
+}
+
+/* line 14, sass/Site.scss */
 #body {
-	margin: 10px auto;
-    padding: 0;
-	position: relative;
-	width: 1240px;
-	height: 800px;
-	border: 1px solid darkblue;
+  margin: 10px auto;
+  padding: 0;
+  position: relative;
+  width: 1240px;
+  height: 800px;
+  border: 1px solid darkblue;
 }
 
-
+/* line 24, sass/Site.scss */
 #header {
-	background-color: cornflowerblue;
-	border-bottom: 1px solid darkblue;
-	height: 100px;
-	width: 100%;	
+  background-color: cornflowerblue;
+  border-bottom: 1px solid darkblue;
+  height: 100px;
+  width: 100%;
 }
-
+/* line 30, sass/Site.scss */
 #header h1 {
-    margin: 0;
+  margin: 0;
 }
 
+/* line 36, sass/Site.scss */
 #title {
-	color: darkblue;
-	font-weight: bold;
-	font-size: 45px;
-	position: relative;
-	left: 50px;
-	top: 20px;
+  color: darkblue;
+  font-weight: bold;
+  font-size: 45px;
+  position: relative;
+  left: 50px;
+  top: 20px;
 }
 
+/* line 45, sass/Site.scss */
 #footer {
-	background-color: cornflowerblue;
-	border-top: 1px solid darkblue;
-	position: absolute;
-	height: 50px;
-	width: 100%;
-	bottom: 0;
-	left: 0;
+  background-color: cornflowerblue;
+  border-top: 1px solid darkblue;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
 
+/* line 55, sass/Site.scss */
 #toolbar {
-	background-color: lightgray;
-	border-bottom: 1px solid darkgrey;
-	height: 50px;
-	width: 100%;
-    font-weight: bold;
-    position: relative;
+  background-color: lightgray;
+  border-bottom: 1px solid darkgrey;
+  height: 50px;
+  width: 100%;
+  font-weight: bold;
+  position: relative;
 }
 
+/* line 64, sass/Site.scss */
 #content {
-	overflow: auto;
-	position: absolute;
-	top: 152px;
-	bottom: 50px;
-	left: 0;
-	right: 0;
+  overflow: auto;
+  position: absolute;
+  top: 152px;
+  bottom: 50px;
+  left: 0;
+  right: 0;
 }
 
+/* line 73, sass/Site.scss */
 div.inline {
-    display: inline-block;
+  display: inline-block;
 }
 
+/* line 77, sass/Site.scss */
 .clickable {
-    cursor: pointer;
+  cursor: pointer;
 }
 
+/* line 81, sass/Site.scss */
 .roundborder6 {
-    border-radius: 12px;
-    padding: 12px;
-    border: 2px solid darkgray;
-    margin: 6px;
+  border-radius: 12px;
+  padding: 12px;
+  border: 2px solid darkgray;
+  margin: 6px;
 }
 
+/* line 88, sass/Site.scss */
 .list-item {
-	float: left;
-	width: 300px;
-	height: 300px;
-	margin: 20px;
-	border: 1px solid darkgray;
-	background-color: rgb(237, 237, 237);
-	position: relative;
+  float: left;
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+  border: 1px solid darkgray;
+  background-color: #ededed;
+  position: relative;
+  font-family: sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border-radius: 20px;
 }
-
+/* line 99, sass/Site.scss */
 .list-item img {
-    max-width: 300px;
-    max-height: 300px;
+  max-width: 300px;
+  max-height: 300px;
 }
 
+/* line 105, sass/Site.scss */
 .list-item-add {
-	cursor: pointer;
+  cursor: pointer;
 }
 
+/* line 109, sass/Site.scss */
 .list-item-actions {
-	position: absolute;
-	right: 20px;
-	bottom: -10px;
-	padding: 4px;
-	border-radius: 4px;
-	border: 1px solid darkblue;
-	background-color: white;
+  position: absolute;
+  right: 20px;
+  bottom: -10px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid darkblue;
+  background-color: white;
 }
 
+/* line 119, sass/Site.scss */
 .list-item-action {
-	display: inline-block;
+  display: inline-block;
 }
 
+/* line 123, sass/Site.scss */
 .toolbox {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
+/* line 127, sass/Site.scss */
 .toolbox img {
-    width: 110px;
-    margin: 5px;
+  width: 110px;
+  margin: 5px;
 }

@@ -1,0 +1,8 @@
+$header-color: cornflowerblue;
+
+@mixin reset-font ($font-size: 1em) {
+	font-family: sans-serif;
+	font-size: $font-size;
+	font-weight: normal;
+}
+
