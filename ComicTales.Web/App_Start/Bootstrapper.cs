@@ -48,5 +48,6 @@ namespace ComicTales
             BsonClassMap.RegisterClassMap<ComicTile>();
             BsonClassMap.RegisterClassMap<TileOverlay>();
         }
+
     }
 }

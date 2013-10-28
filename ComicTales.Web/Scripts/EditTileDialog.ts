@@ -6,9 +6,9 @@ module ComicTales {
     export class EditTileDialog {
 
         private title: string;
-        private isNew: bool;
+        private isNew: boolean;
 
-        public selectedView: KnockoutObservableString;
+        public selectedView: KnockoutObservable<string>;
         public isCameraVisible = ko.observable(true);
         public imageUrl = ko.observable("../Content/imgs/empty.png");
 

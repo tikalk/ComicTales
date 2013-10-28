@@ -14,7 +14,7 @@ module ComicTales {
 
     export class CreateStoryViewModel {
 
-        public storyName: KnockoutObservableString;
+        public storyName: KnockoutObservable<string>;
 
         constructor() {
             this.storyName = ko.observable('');

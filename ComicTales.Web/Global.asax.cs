@@ -8,6 +8,7 @@ using System.Web.Routing;
 using ComicTales;
 using ComicTales.SignalR;
 using Microsoft.AspNet.SignalR;
+using Microsoft.Practices.Unity;
 
 namespace ComicTales
 {
@@ -15,11 +16,13 @@ namespace ComicTales
     // visit http://go.microsoft.com/?LinkId=9394801
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static IUnityContainer UnityContainer;
+
         protected void Application_Start()
         {
             // Register the default hubs route: ~/signalr
             var hubConfiguration = new HubConfiguration { EnableDetailedErrors = true }; //for debug
-            RouteTable.Routes.MapHubs(hubConfiguration);
+            //RouteTable.Routes.MapHubs(hubConfiguration);
             GlobalHost.HubPipeline.AddModule(new SignalRLoggingPipelineModule());
 
             AreaRegistration.RegisterAllAreas();
@@ -28,7 +31,7 @@ namespace ComicTales
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            Bootstrapper.Initialise();
+            UnityContainer = Bootstrapper.Initialise();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
