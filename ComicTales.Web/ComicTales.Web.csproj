@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <IsCompassProject>True</IsCompassProject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -195,7 +196,13 @@
     <Content Include="Content\imgs\edit.png" />
     <Content Include="Content\imgs\empty.png" />
     <Content Include="Content\imgs\progress-bar.jpg" />
+    <Content Include="Content\imgs\tile-action-sea7b78c774.png" />
+    <Content Include="Content\imgs\tile-action\delete.png" />
+    <Content Include="Content\imgs\tile-action\edit.png" />
+    <Content Include="Content\sass\_common.scss" />
+    <Content Include="config.rb" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -279,10 +286,18 @@
     <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="Scripts\typings\knockout\knockout.amd.d.ts" />
     <Content Include="Scripts\typings\knockout\knockout.d.ts" />
+    <Content Include="stylesheets\ie.css" />
+    <Content Include="stylesheets\print.css" />
+    <Content Include="stylesheets\screen.css" />
     <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Upload\tile1.png" />
     <Content Include="Content\imgs\upload.png" />
-    <Content Include="Content\Site.css" />
+    <None Include="Content\sass\Site.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>True</DebugInfo>
+    </None>
     <TypeScriptCompile Include="Scripts\EditTileDialog.ts" />
     <Content Include="Scripts\EditTileDialog.js">
       <DependentUpon>EditTileDialog.ts</DependentUpon>
